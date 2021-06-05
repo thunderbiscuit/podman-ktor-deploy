@@ -1,9 +1,14 @@
 plugins {
     kotlin("jvm") version "1.5.10"
+    application
 }
 
 group = "me.thunderbiscuit"
 version = "0.0.1"
+
+application {
+    mainClass.set("io.ktor.server.netty.EngineMain")
+}
 
 repositories {
     mavenCentral()
