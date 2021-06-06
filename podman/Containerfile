@@ -1,0 +1,15 @@
+FROM docker.io/adoptopenjdk/openjdk16:x86_64-debian-jre-16.0.1_9
+
+# 1. Run as root
+# ADD app-0.0.1.tar /opt/basicktor/
+# CMD ["/opt/basicktor/app-0.0.1/bin/app"]
+
+# 2. Run with non-root user
+RUN useradd --create-home --no-log-init --shell /bin/bash basicktor
+USER basicktor
+
+COPY app-0.0.1.tar /tmp/
+RUN tar -xvf /tmp/app-0.0.1.tar -C /home/basicktor/
+
+CMD ["/home/basicktor/app-0.0.1/bin/app"]
+# CMD ["/home/basicktor/app-0.0.1/bin/app -config=production.conf"]
